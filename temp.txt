@@ -1,0 +1,24 @@
+create table Storage(
+	NameOfTheBrand varchar,
+	quantityInPackets integer,
+	costOfEachPacket integer,
+	location varchar
+)
+
+create table customers(
+	customer_id serial primary key,
+	name varchar(100) NOT NULL,
+	shop_name VARCHAR(100),
+	address VARCHAR(50),
+	phone_number VARCHAR(100),
+	outstanding_balance NUMERIC(10,2) DEFAULT 0.00
+);
+
+create table transactions(
+	transaction_id serial primary key,
+	customer_id INT REFERENCES customers(customer_id) on delete cascade,
+	transaction_date DATE DEFAULT current_date,
+	amount numeric(10,2) not null
+);
+
+
